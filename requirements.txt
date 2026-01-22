@@ -16,5 +16,4 @@ tensorflow_hub==0.13.0
 torch==1.7.1
 tqdm==4.64.1
 transformers==4.16.0.dev0
-transformers.egg==info
 whoosh==2.7.4
