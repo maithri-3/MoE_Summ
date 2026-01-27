@@ -1,8 +1,8 @@
 import json
 import re
 
-input_file = "pubmed/pubmed-dataset/train.txt"          # your original file (JSONL)
-output_file = "pubmed_train.jsonl" # output like cnndm / wikihow
+input_file = "pubmed/pubmed-dataset/test.txt"          # your original file (JSONL)
+output_file = "pubmed_test.jsonl" # output like cnndm / wikihow
 
 def clean_abstract(text):
     # remove <S> and </S> tags
