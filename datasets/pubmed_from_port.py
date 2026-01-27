@@ -6,7 +6,7 @@ import json
 
 dataset = load_dataset(
     "qiaojin/PubMedQA",
-    "3.0.0",
+    "pqa_labeled",
     revision="main",
     download_mode="reuse_cache_if_exists"
 )
