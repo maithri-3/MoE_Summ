@@ -1,8 +1,8 @@
 import json
 import re
 
-input_file = "train.txt"          # your original file (JSONL)
-output_file = "/scratch/$USER/mtp_maithri/MoE_Summ/pubmed_train.jsonl" # output like cnndm / wikihow
+input_file = "/scratch/$USER/mtp_maithri/MoE_Summ/datasets/pubmed/pubmed-dataset/train.txt"          # your original file (JSONL)
+output_file = "/scratch/$USER/mtp_maithri/MoE_Summ/datasets/pubmed_train.jsonl" # output like cnndm / wikihow
 
 def clean_abstract(text):
     # remove <S> and </S> tags
