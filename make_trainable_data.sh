@@ -21,7 +21,7 @@ export CUDA_VISIBLE_DEVICES=0
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 CUDA_VISIBLE_DEVICES=0 python3 run_mybart.py \
-  --model_name_or_path facebook/bart-base \
+  --model_name_or_path /scratch/$USER/bart-base \
   --do_train --do_eval \
   --train_file datasets/cnndm_wiki_pubmed_train.jsonl \
   --validation_file dataesets/cnndm_wiki_pubmed_validation.jsonl \
