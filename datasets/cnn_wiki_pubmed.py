@@ -1,35 +1,32 @@
-import pdb
-import random
 import json
-data_name='train'
-f1=open('cnndm_{}.json'.format(data_name))
-lines1=f1.readlines()
-new_lines1=[]
-for line in lines1:
-    content=json.loads(line)
-    content['idx']='cnndm'
-    new_line=json.dumps(content)
-    new_lines1.append(new_line)
+import random
 
-f2=open('wikihow_{}.json'.format(data_name))
-lines2=f2.readlines()
-new_lines2=[]
-for line in lines2:
-    content=json.loads(line)
-    content['idx']='wiki'
-    new_line=json.dumps(content)
-    new_lines2.append(new_line)
+data_name = "train"
 
-f3=open('pubmed_{}.json'.format(data_name))
-lines3=f3.readlines()
-new_lines3=[]
-for line in lines3:
-    content=json.loads(line)
-    content['idx']='pubmed'
-    new_line=json.dumps(content)
-    new_lines3.append(new_line)
+def load_and_tag(path, tag):
+    lines = []
+    with open(path) as f:
+        for lineno, line in enumerate(f, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                content = json.loads(line)
+            except json.JSONDecodeError as e:
+                print(f"Skipping bad JSON in {path} at line {lineno}: {e}")
+                continue
 
-all_lines=new_lines2+new_lines1+new_lines3
+            content["idx"] = tag
+            lines.append(json.dumps(content))
+    return lines
+
+
+cnndm_lines  = load_and_tag(f"cnndm_{data_name}.json",  "cnndm")
+wikihow_lines = load_and_tag(f"wikihow_{data_name}.json", "wiki")
+pubmed_lines = load_and_tag(f"pubmed_{data_name}.json", "pubmed")
+
+all_lines = cnndm_lines + wikihow_lines + pubmed_lines
 random.shuffle(all_lines)
-fw=open('cnndm_wiki_pubmed_{}.json'.format(data_name),'w')
-fw.write('\n'.join(all_lines))
+
+with open(f"cnndm_wiki_pubmed_{data_name}.jsonl", "w") as fw:
+    fw.write("\n".join(all_lines))
