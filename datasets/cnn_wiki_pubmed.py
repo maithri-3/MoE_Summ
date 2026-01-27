@@ -1,7 +1,7 @@
 import json
 import random
 
-data_name = "test"
+data_name = "validation"
 
 def load_and_tag(path, tag):
     lines = []
