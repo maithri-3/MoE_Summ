@@ -1,21 +1,26 @@
-from datasets import load_dataset
 import json
+import re
 
-# Load PubMed summarization dataset
-dataset = load_dataset(
-    "scientific_papers",
-    "pubmed",
-    download_mode="reuse_cache_if_exists"
-)
+input_file = "train.txt"          # your original file (JSONL)
+output_file = "/scratch/$USER/mtp_maithri/MoE_Summ/pubmed_train.jsonl" # output like cnndm / wikihow
 
-train_dataset = dataset["train"]
+def clean_abstract(text):
+    # remove <S> and </S> tags
+    text = re.sub(r"</?S>", "", text)
+    return text.strip()
 
-with open("pubmed_train.jsonl", "w") as fw:
-    for case in train_dataset:
-        ARTICLE = case["article"]
-        ABSTRACT = case["abstract"]
+with open(input_file) as fin, open(output_file, "w") as fout:
+    for line in fin:
+        example = json.loads(line)
 
-        if not ABSTRACT:
+        # Join article sentences
+        ARTICLE = " ".join(example["article_text"]).strip()
+
+        # Join and clean abstract sentences
+        ABSTRACT = " ".join(example["abstract_text"])
+        ABSTRACT = clean_abstract(ABSTRACT)
+
+        if not ARTICLE or not ABSTRACT:
             continue
 
         src_length = len(ARTICLE.split())
@@ -34,5 +39,5 @@ with open("pubmed_train.jsonl", "w") as fw:
             "idx": "pubmed"
         }
 
-        json.dump(content, fw)
-        fw.write("\n")
+        json.dump(content, fout)
+        fout.write("\n")
