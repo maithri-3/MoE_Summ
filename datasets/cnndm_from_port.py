@@ -12,7 +12,7 @@ dataset = load_dataset(
 )
 
 
-train_dataset = dataset['test']
+train_dataset = dataset['train']
 fw=open('cnndm_train.json','w')
 for case in train_dataset:
     ARTICLE = case['article']
