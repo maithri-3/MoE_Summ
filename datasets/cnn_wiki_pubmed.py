@@ -22,8 +22,8 @@ def load_and_tag(path, tag):
 
 
 cnndm_lines  = load_and_tag(f"cnndm_{data_name}.json",  "cnndm")
-wikihow_lines = load_and_tag(f"wikihow_{data_name}.json", "wiki")
-pubmed_lines = load_and_tag(f"pubmed_{data_name}.json", "pubmed")
+wikihow_lines = load_and_tag(f"wikihow_{data_name}.jsonl", "wiki")
+pubmed_lines = load_and_tag(f"pubmed_{data_name}.jsonl", "pubmed")
 
 all_lines = cnndm_lines + wikihow_lines + pubmed_lines
 random.shuffle(all_lines)
