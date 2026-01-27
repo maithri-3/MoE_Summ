@@ -1,24 +1,23 @@
 import json
-from datasets import load_dataset
+import tensorflow_datasets as tfds
 
-# Load WikiHow dataset
-dataset = load_dataset(
-    "wikihow",
-    "all",
-    download_mode="reuse_cache_if_exists"
-)
+def write_split(split_name, out_file):
+    dataset = tfds.load(
+        "wikihow",
+        split=split_name,
+        shuffle_files=False
+    )
 
-def write_split(split, out_file):
     with open(out_file, "w") as fw:
-        for case in split:
-            ARTICLE = case["article"]
-            SUMMARY = case["summary"]
+        for example in tfds.as_numpy(dataset):
+            article = example["article"].decode("utf-8")
+            summary = example["summary"].decode("utf-8")
 
-            if not SUMMARY:
+            if not summary:
                 continue
 
-            src_length = len(ARTICLE.split())
-            tgt_length = len(SUMMARY.split())
+            src_length = len(article.split())
+            tgt_length = len(summary.split())
 
             if tgt_length == 0:
                 continue
@@ -28,8 +27,8 @@ def write_split(split, out_file):
                 continue
 
             content = {
-                "src": ARTICLE,
-                "tgt": SUMMARY,
+                "src": article,
+                "tgt": summary,
                 "idx": "wikihow"
             }
 
@@ -38,10 +37,10 @@ def write_split(split, out_file):
 
 
 # Train
-write_split(dataset["train"], "wikihow_train.jsonl")
+write_split("train", "wikihow_train.jsonl")
 
 # Validation
-write_split(dataset["validation"], "wikihow_validation.jsonl")
+write_split("validation", "wikihow_validation.jsonl")
 
 # Test
-write_split(dataset["test"], "wikihow_test.jsonl")
+write_split("test", "wikihow_test.jsonl")
