@@ -1,7 +1,7 @@
 import pdb
 import random
 from datasets import load_dataset
-from datasets import load_metric
+# from datasets import load_metric
 import json
 
 dataset = load_dataset('cnn_dailymail', '3.0.0')
