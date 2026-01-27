@@ -12,9 +12,9 @@ dataset = load_dataset(
 )
 
 
-test_dataset = dataset['test']
-fw=open('cnndm_test.json','w')
-for case in test_dataset:
+validation_dataset = dataset['validation']
+fw=open('cnndm_validation.json','w')
+for case in validation_dataset:
     ARTICLE = case['article']
     highlights = case['highlights']
     content={}
