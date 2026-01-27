@@ -4,7 +4,12 @@ from datasets import load_dataset
 # from datasets import load_metric
 import json
 
-dataset = load_dataset('cnn_dailymail', '3.0.0')
+dataset = load_dataset(
+    "abisee/cnn_dailymail",
+    "3.0.0",
+    revision="main",
+    download_mode="reuse_cache_if_exists"
+)
 
 
 train_dataset = dataset['test']
