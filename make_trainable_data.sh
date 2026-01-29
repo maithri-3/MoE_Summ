@@ -13,7 +13,7 @@ ulimit -s unlimited
 ulimit -c unlimited
 
 module purge
-source /scratch/$USER/miniconda3/bin/activate
+# source /scratch/$USER/miniconda3/bin/activate
 conda activate /scratch/$USER/mtp_maithri/maithri
 
 cd $SLURM_SUBMIT_DIR
