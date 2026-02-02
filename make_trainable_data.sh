@@ -14,7 +14,7 @@ ulimit -c unlimited
 
 module purge
 # source /scratch/$USER/miniconda3/bin/activate
-source /home/pushpa.rs.cse23.itbhu/anaconda3/etc/profile.d/conda.sh
+source /home/pushpa.rs.cse23.itbhu/anaconda3/bin/activate
 conda activate /scratch/$USER/mtp_maithri/maithri
 
 cd $SLURM_SUBMIT_DIR
