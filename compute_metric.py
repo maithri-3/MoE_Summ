@@ -7,13 +7,15 @@ import time
 from bert_score import score
 import nltk
 import numpy as np
-from datasets import load_metric
+import datasets
+# from datasets import load_metric
+import evaluate
 
 logger = logging.getLogger(__name__)
 
 
 class MetricCompute:
-    rouge_metric = load_metric('metrics/rouge.py')
+    rouge_metric = evaluate.load('rouge')
 
     def __init__(self, data_args, tokenizer, test_dataset, eval_datatset):
         self.data_args = data_args
