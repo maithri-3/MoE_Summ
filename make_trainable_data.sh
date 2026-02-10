@@ -7,8 +7,6 @@
 #SBATCH --output=trainable_data_job.out
 #SBATCH --error=trainable_data_job.err
 
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-
 ulimit -s unlimited
 ulimit -c unlimited
 
@@ -19,7 +17,6 @@ conda activate /scratch/$USER/mtp_maithri/maithri
 
 cd $SLURM_SUBMIT_DIR
 export CUDA_VISIBLE_DEVICES=0
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 CUDA_VISIBLE_DEVICES=0 python run_mybart.py \
   --model_name_or_path /scratch/$USER/bart-base \
