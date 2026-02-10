@@ -121,7 +121,7 @@ def main():
         model_args.model_name_or_path = last_checkpoint
 
     logger.info(f'******* Loading model form pretrained {model_args.model_name_or_path} **********')
-    tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')  # 如果用bart-base就用这行
+    tokenizer = BartTokenizer.from_pretrained('/scratch/pushpa.rs.cse23.itbhu/bart-large')  # 如果用bart-base就用这行
     logger.info('load BartTokenizer')
 
     config = BartConfig.from_pretrained(model_args.model_name_or_path)
