@@ -47,15 +47,17 @@ from transformers.moebert.utils import (
     MoEModelOutput,
     MoEModelOutputWithPooling,
 )
-from transformers.moebert.utils_enc import (
-    FeedForward_enc,
-    ImportanceProcessor_enc,
-    MoEModelOutput_enc,
-    MoEModelOutputWithPooling_enc,
-    use_experts_enc,
-)
-from transformers.moebert.moe_layer import MoELayer
-from transformers.moebert.moe_layer_enc import MoELayer_enc
+# from transformers.moebert.utils import (
+#     FeedForward,
+#     ImportanceProcessor,
+# )
+# from transformers.models.bert.modeling_bert_moe import (
+#     MoEModelOutput, 
+#     MoEModelOutputWithPooling,
+#     use_experts,
+# )
+# from transformers.moebert.moe_layer import MoELayer
+# from transformers.moebert.moe_layer_enc import MoELayer_enc
 
 logger = logging.getLogger(__name__)
 
