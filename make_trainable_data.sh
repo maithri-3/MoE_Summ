@@ -6,7 +6,7 @@
 #SBATCH --job-name=trainable_data
 #SBATCH --output=trainable_data_job.out
 #SBATCH --error=trainable_data_job.err
-#SBATCH --exclusive
+
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 ulimit -s unlimited
@@ -21,7 +21,7 @@ cd $SLURM_SUBMIT_DIR
 export CUDA_VISIBLE_DEVICES=0
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-CUDA_VISIBLE_DEVICES=0 python3 run_mybart.py \
+CUDA_VISIBLE_DEVICES=0 python run_mybart.py \
   --model_name_or_path /scratch/$USER/bart-base \
   --do_train --do_eval \
   --train_file datasets/cnndm_wiki_pubmed_train.jsonl \
